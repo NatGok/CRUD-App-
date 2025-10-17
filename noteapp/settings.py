@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ia(o$+1^j&#u7)00m)*h&p+tzx+xto=4!*i531^v4a0i)#v*mo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['natkaya.me', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -116,7 +116,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# If the site will be served under a subpath (e.g. natkaya.me/CRUD-App-/)
+# set FORCE_SCRIPT_NAME to the subpath (no trailing slash). This makes
+# Django build URLs with the prefix when using functions that honor it.
+FORCE_SCRIPT_NAME = '/CRUD-App-'
+
+# Serve static files under the same subpath so URLs resolve correctly in
+# production behind a reverse proxy. During development this also makes
+# static file URLs include the prefix.
+STATIC_URL = '/CRUD-App-/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]

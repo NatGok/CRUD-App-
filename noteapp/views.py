@@ -11,8 +11,8 @@ def note(request):
         # save the modal instance if the form is valid
         if form.is_valid():
             form.save()
-            # clearing the form data by redirecting to the same view
-            return redirect(note)
+            # clearing the form data by redirecting to the root of the app
+            return redirect('note-root')
     # get all note objects
     notes = Note.objects.all().order_by('id')
     return render(request, "index.html", {"form": form, "notes": notes})
@@ -28,11 +28,11 @@ def update_note(request, id):
         # save the modal instance if the form is valid
         if form.is_valid():
             form.save()
-            # redirect to the note method or '/' path if the form is valid
-            return redirect(note)
+            # refresh the page after save
+            return redirect('note-root')
     return render(request, "index.html", {"form": form})
 
 
 def delete_note(request, id):
     Note.objects.get(id=id).delete()
-    return redirect(note)
+    return redirect('note-root')

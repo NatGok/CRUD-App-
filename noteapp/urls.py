@@ -16,11 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import RedirectView
 from noteapp import views
+
+# Serve the app under the /CRUD-App-/ prefix
+app_prefix = 'CRUD-App-/'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", views.note, name="note"),
-    path("update-note/<id>/", views.update_note, name="update-note"),
-    path("delete-note/<id>/", views.delete_note, name="delete-note"),
+
+    # Redirect the site root to the prefixed app path
+    path('', RedirectView.as_view(url='/' + app_prefix, permanent=False)),
+
+    path(app_prefix, views.note, name='note-root'),
+    path(app_prefix + 'update-note/<id>/', views.update_note, name='update-note'),
+    path(app_prefix + 'delete-note/<id>/', views.delete_note, name='delete-note'),
 ]
