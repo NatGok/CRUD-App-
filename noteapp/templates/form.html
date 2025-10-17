@@ -1,0 +1,7 @@
+{% extends 'index.html' %} {% block content %}
+<form action="" method="post">
+  {% csrf_token %} {{form}}
+  <button type="submit" class="btn btn-success mt-2">Add</button>
+</form>
+
+{% include "view_note.html" %} {% endblock content %}

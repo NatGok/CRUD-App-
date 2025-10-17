@@ -1,0 +1,15 @@
+{% for note in notes %}
+<div class="card mt-2 w-100">
+  <div class="card-body">
+    <h5 class="card-title">{{note.title}}</h5>
+    <p class="card-text">{{note.description}}</p>
+
+    <a href="{% url 'update-note' note.id %}" class="btn btn-primary"
+      >Edit Me</a
+    >
+    <a href="{% url 'delete-note' note.id %}" class="btn btn-danger"
+      >Delete Me</a
+    >
+  </div>
+</div>
+{% endfor %}
