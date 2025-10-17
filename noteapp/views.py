@@ -14,7 +14,7 @@ def note(request):
             # clearing the form data by redirecting to the same view
             return redirect(note)
     # get all note objects
-    notes = Note.objects.all()
+    notes = Note.objects.all().order_by('id')
     return render(request, "index.html", {"form": form, "notes": notes})
 
 
